@@ -1,7 +1,7 @@
 const express = require('express');
 
 // Get all controller methods for the router
-const { getReviews } = require('../controllers/review');
+const { getReviews, getReview } = require('../controllers/review');
 const Review = require('../models/Review');
 const advancedResults = require('../middleware/advancedResults');
 
@@ -13,5 +13,7 @@ router.route('/').get(advancedResults(Review, {
     path: 'bootcamp',
     select: 'name description'
 }), getReviews);
+
+router.route('/:id').get(getReview);
 
 module.exports = router;
